@@ -4,6 +4,7 @@
     "player.keybind.description": "Pressione %s para abrir o menu do jogador",
     "player.menu.title": "![](%s) Olá %s",
     "player.menu.description": " BEM VINDO À MRI QBOX",
+    "player.menu.id": "Identificação",
     "player.menu.info": "**ID**: %s | **RG**: %s %s **Nome**: %s %s **Coins**: %s",
     "player.menu.job": "Emprego",
     "player.menu.manageJob": "Gerenciar emprego",

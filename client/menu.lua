@@ -20,29 +20,36 @@ local function getItemIndex(menu, title, operation)
     return nil
 end
 
-function getMenu(menuName)
+local function getMenu(menuName)
     return menus[menuName] or nil
+end
+
+local function setMenu(menuName, data)
+    menus[menuName] = data
 end
 
 return {
     addItemToMenu = function(menuName, item)
         local menu = getMenu(menuName)
         if not menu then
+            print(string.format("Menu '%s' not found", menuName))
             return
         end
         local index = getItemIndex(menu, item.title, "add")
         menu[index] = Utils.createMenuItem(item.title, item.icon, item.iconAnimation, item.description, item.onSelectFunction, item.onSelectArg, item.arrow)
+        setMenu(menuName, menu)
     end,
     removeItemFromMenu = function(menuName, itemName)
         local menu = getMenu(menuName)
         if not menu then
             return
         end
-        local index = getMenuIndex(menu, itemName)
+        local index = getItemIndex(menu, itemName)
         if not index then
             return
         end
         menu[index] = nil
+        setMenu(menuName, menu)
     end,
     openAdminMenu = function()
         AdminMenu.registerMenu(menus['admin'], menus['management'])

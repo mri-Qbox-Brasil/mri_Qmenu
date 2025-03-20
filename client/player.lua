@@ -57,10 +57,10 @@ local function loadFixedMenuItems(playerData)
 
     if Utils.isBoss(playerData, "gang") or Utils.isRecruiter(playerData, "gang") then
         options[#options + 1] = Utils.createMenuItem(
-            locale("player.menu.manageJob"),
+            locale("player.menu.manageGang"),
             "users",
             Config.IconAnimation,
-            locale("player.menu.manageJobDescription"),
+            locale("player.menu.manageGangDescription"),
             ExecuteCommand,
             "+tablet:gang"
         )
@@ -96,12 +96,24 @@ local function loadFixedMenuItems(playerData)
         )
     end
 
+    -- Adicione mais menus fixos aqui :)
+
     return options
+end
+
+local function loadRuntimeMenuItems(finalMenu, runtimeMenu)
+    if (not runtimeMenu == nil) or (#runtimeMenu > 0) then
+        for k, v in pairs(runtimeMenu) do
+            finalMenu[#finalMenu + 1] = v
+        end
+    end
+    return finalMenu
 end
 
 local function registerMenu(menu)
     local PlayerData = QBX.PlayerData
     local options = loadFixedMenuItems(PlayerData)
+    options = loadRuntimeMenuItems(options, menu)
 
     lib.registerContext({
         id = 'menu_jogador',
