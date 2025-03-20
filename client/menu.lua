@@ -1,12 +1,9 @@
-local Utils = lib.require('client/utils')
-local PlayerMenu = lib.require('client/player')
-local AdminMenu = lib.require('client/admin')
+local Utils = lib.require("client/utils")
+local PlayerMenu = lib.require("client/player")
+local AdminMenu = lib.require("client/admin")
 
-local menus = {
-    admin = {},
-    player = {},
-    management = {}
-}
+local menus = {}
+local categories = {}
 
 local function getItemIndex(menu, title, operation)
     for k, v in pairs(menu) do
@@ -21,7 +18,7 @@ local function getItemIndex(menu, title, operation)
 end
 
 local function getMenu(menuName)
-    return menus[menuName] or nil
+    return menus[menuName] or {}
 end
 
 local function setMenu(menuName, data)
@@ -29,10 +26,10 @@ local function setMenu(menuName, data)
 end
 
 return {
-    addItemToMenu = function(menuName, item)
+    addItemToMenu = function(menuName, item, category)
         local menu = getMenu(menuName)
         if not menu then
-            print(string.format("Menu '%s' not found", menuName))
+            print(string.format("Menu "%s" not found", menuName))
             return
         end
         local index = getItemIndex(menu, item.title, "add")
@@ -51,20 +48,32 @@ return {
         menu[index] = nil
         setMenu(menuName, menu)
     end,
+    addCategory = function(name, data)
+        categories[name] = {
+            displayName = displayName,
+            description = description,
+            icon = icon,
+            iconAnimation = iconAnimation,
+            parentMenu = parentMenu
+        }
+    end,
+    removeCategory = function(name)
+        categories[name] = nil
+    end,
     openAdminMenu = function()
         if lib.callback.await("mri_Qmenu:server:HasPermission", false) then
-            AdminMenu.registerMenu(menus['admin'], menus['management'])
-            lib.showContext('menu_admin')
+            AdminMenu.registerMenu(getMenu("admin"), getMenu("management"))
+            lib.showContext("menu_admin")
         else
             lib.notify({
                 type = "error",
-                title = "Sem permissão",
-                description = "Pq sim"
+                title = locale("error.admin.menu.notAllowedTitle"),
+                description = locale("error.admin.menu.notAllowedDescription")
             })
         end
     end,
     openPlayerMenu = function()
-        PlayerMenu.registerMenu(menus['player'])
-        lib.showContext('menu_jogador')
+        PlayerMenu.registerMenu(getMenu("player"))
+        lib.showContext("menu_jogador")
     end
 }

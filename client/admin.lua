@@ -41,15 +41,8 @@ local function loadFixedMenuItems()
         ExecuteCommand,
         "weather"
     )
-    
-    options[#options + 1] = Utils.createMenuItem(
-        locale("admin.menu.manage"),
-        "a-solid fa-cogs",
-        Config.IconAnimation,
-        locale("admin.menu.manageDescription"),
-        ExecuteCommand, -- AbrirManageMenu
-        "manage"
-    )
+
+    -- Adicione mais menus fixos aqui :)
 
     return options
 end

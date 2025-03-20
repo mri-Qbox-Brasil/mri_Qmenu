@@ -1,6 +1,15 @@
 {
     "admin.keybind.description": "Abrir o menu de administração",
     "admin.menu.title": "![](%s) Administração",
+    "admin.menu.description": "Gerenciamento do servidor",
+    "admin.menu.admin": "Painel Admin",
+    "admin.menu.adminDescription": "Abrir o Painel Admin.",
+    "admin.menu.customs": "Customizar Veículo",
+    "admin.menu.customsDescription": "Customizar o veículo atual.",
+    "admin.menu.clock": "Relógio",
+    "admin.menu.clockDescription": "Ajustar o horário do servidor.",
+    "admin.menu.weather": "Clima",
+    "admin.menu.weatherDescription": "Ajustar o clima do servidor.",
 
     "player.keybind.description": "Abrir o menu do jogador",
     "player.menu.title": "![](%s) Olá %s",
@@ -18,5 +27,8 @@
     "player.menu.skill": "Habilidades",
     "player.menu.skillDescription": "Ver suas habilidades.",
     "player.menu.waypoints": "Pontos de Interesse",
-    "player.menu.waypointsDescription": "Ver seus pontos de interesse."
+    "player.menu.waypointsDescription": "Ver seus pontos de interesse.",
+
+    "error.admin.menu.notAllowedTitle": "Sem permissão",
+    "error.admin.menu.notAllowedDescription": "Você não tem permissão para executar essa ação."
 }
