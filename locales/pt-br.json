@@ -2,5 +2,19 @@
     "admin.keybind.description": "Pressione %s para abrir o menu de administração",
 
     "player.keybind.description": "Pressione %s para abrir o menu do jogador",
-    "player.menu.info": "**ID**: %s | **RG**: %s %s **Nome**: %s %s **Coins**: %s"
+    "player.menu.title": "![](%s) Olá %s",
+    "player.menu.description": " BEM VINDO À MRI QBOX",
+    "player.menu.info": "**ID**: %s | **RG**: %s %s **Nome**: %s %s **Coins**: %s",
+    "player.menu.job": "Emprego",
+    "player.menu.manageJob": "Gerenciar emprego",
+    "player.menu.manageJobDescription": "Configurações do Emprego.",
+    "player.menu.gang": "Gangue",
+    "player.menu.manageGang": "Gerenciar gangue",
+    "player.menu.manageGangDescription": "Configurações da Gangue.",
+    "player.menu.rep": "Reputação",
+    "player.menu.repDescription": "Ver sua reputação.",
+    "player.menu.skill": "Habilidades",
+    "player.menu.skillDescription": "Ver suas habilidades.",
+    "player.menu.waypoints": "Pontos de Interesse",
+    "player.menu.waypointsDescription": "Ver seus pontos de interesse."
 }

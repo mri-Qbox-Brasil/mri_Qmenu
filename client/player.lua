@@ -1,121 +1,65 @@
-local function isBoss(playerData, org)
-    local result = false
-    if GetResourceState("mri_Qjobsystem") == "started" then
-        result = exports.mri_Qjobsystem:CheckPlayerIsbossByJobSystemData(org, playerData)
-    end
-end
-
-local function isRecruiter(playerData, org)
-    local result = false
-    if GetResourceState("mri_Qjobsystem") == "started" then
-        result = exports.mri_Qjobsystem:CheckPlayerIsRecruiterByJobSystemData(org, playerData)
-    end
-end
-
-local function getSpaces(qtd)
-    local result = ""
-    for i = 1, qtd do
-        result = result .." "
-    end
-    return result
-end
-
-local function getPlayerOrgs(playerData)
-    return {
-        jobData = {
-            label = playerData.job.label,
-            grade = playerData.job.grade.name
-        },
-        gangData = {
-            label = playerData.gang.label,
-            grade = playerData.gang.grade.name
-        }
-    }
-end
+local Config = lib.require('shared/config')
+local Utils = lib.require('client/utils')
+local imgUrl = "https://cfx-nui-mri_Qbox/web-side/icones/logo24.png"
 
 local function formatPlayerData(data)
     return locale("player.menu.info",
         data.source,
         data.citizenid,
-        getSpaces(130),
+        Utils.getSpaces(130),
         data.name,
-        getSpaces(130),
+        Utils.getSpaces(130),
         data.money.coin
     )
 end
 
-local function createMenuEntry(menu, title, icon, iconAnimation, description, onSelectFunction, onSelectArg, arrow)
-    menu[#menu + 1 = {
-        title = title,
-        icon = icon,
-        iconAnimation = iconAnimation,
-        description = description,
-        arrow = arrow or false,
-        onSelect = function()
-            if onSelectArg then
-                onSelectFunction(onSelectArg)
-            else
-                onSelectFunction()
-            end
-        end
-    }
-end
-
-local loadFixedMenuItems()
-    local PlayerData = QBX.PlayerData
-    local orgs = getPlayerOrgs(PlayerData)
-    local isBoss = exports.mri_Qjobsystem:CheckPlayerIsbossByJobSystemData("job", PlayerData)
-    local isRecruiter = exports.mri_Qjobsystem:CheckPlayerIsRecruiterByJobSystemData("job", PlayerData)
+local function loadFixedMenuItems(playerData)
+    local orgs = Utils.getPlayerOrgs(playerData)
     local options = {}
-    
-    createMenuEntry(
-        options,
+
+    options[#options + 1] = Utils.createMenuItem(
         locale("player.menu.id"),
         "fas fa-address-card",
-        "fade",
-        formatPlayerData(PlayerData),
+        Config.IconAnimation,
+        formatPlayerData(playerData),
         ExecuteCommand,
         "id"
     )
 
-    createMenuEntry(
-        options,
+    options[#options + 1] = Utils.createMenuItem(
         locale("player.menu.job"),
         "fas fa-briefcase",
-        "fade",
+        Config.IconAnimation,
         string.format("%s | %s", orgs.jobData.label, orgs.jobData.grade),
         ExecuteCommand,
         "job"
     )
 
-    if isBoss(PlayerData, "job") or isRecruiter(PlayerData, "job") then
-        createMenuEntry(
-            options,
+    if Utils.isBoss(playerData, "job") or Utils.isRecruiter(playerData, "job") then
+        options[#options + 1] = Utils.createMenuItem(
             locale("player.menu.manageJob"),
             "users",
-            "fade",
+            Config.IconAnimation,
             locale("player.menu.manageJobDescription"),
             ExecuteCommand,
             "+tablet:job"
         )
     end
 
-    createMenuEntry(
-        options,
+    options[#options + 1] = Utils.createMenuItem(
         locale("player.menu.gang"),
         "gun",
-        "fade",
+        Config.IconAnimation,
         string.format("%s | %s", orgs.gangData.label, orgs.gangData.grade),
         ExecuteCommand,
         "gang"
     )
 
-    if isBoss(PlayerData, "gang") or isRecruiter(PlayerData, "gang") then
-        createMenuEntry(
-            options,
+    if Utils.isBoss(playerData, "gang") or Utils.isRecruiter(playerData, "gang") then
+        options[#options + 1] = Utils.createMenuItem(
             locale("player.menu.manageJob"),
             "users",
-            "fade",
+            Config.IconAnimation,
             locale("player.menu.manageJobDescription"),
             ExecuteCommand,
             "+tablet:gang"
@@ -123,25 +67,52 @@ local loadFixedMenuItems()
     end
 
     if GetResourceState("cw-rep") == "started" then
-        createMenuEntry(
-            options,
+        options[#options + 1] = Utils.createMenuItem(
             locale("player.menu.rep"),
             "book",
-            "fade",
+            Config.IconAnimation,
             locale("player.menu.repDescription"),
             ExecuteCommand,
             "rep"
-        )    
+        )
+        options[#options + 1] = Utils.createMenuItem(
+            locale("player.menu.skill"),
+            "fa-solid fa-book-bookmark",
+            Config.IconAnimation,
+            locale("player.menu.skillDescription"),
+            ExecuteCommand,
+            "skill"
+        )
     end
+
+    if GetResourceState("pickle_waypoints") == "started" then
+        options[#options + 1] = Utils.createMenuItem(
+                locale("player.menu.waypoints"),
+            "location-dot",
+            Config.IconAnimation,
+            locale("player.menu.waypointsDescription"),
+            ExecuteCommand,
+            "waypoint"
+        )
+    end
+
+    return options
 end
 
 local function registerMenu(menu)
-    local orgData = getPlayerData()
+    local PlayerData = QBX.PlayerData
+    local options = loadFixedMenuItems(PlayerData)
 
+    lib.registerContext({
+        id = 'menu_jogador',
+        title = locale("player.menu.title", imgUrl, PlayerData.name),
+        description = locale("player.menu.description"),
+        options = options
+    })
 end
 
 return {
-    function = registerMenu(menu)
+    registerMenu = function(menu)
         registerMenu(menu)
     end
 }
