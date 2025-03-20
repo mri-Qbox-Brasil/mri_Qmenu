@@ -1,6 +1,5 @@
 local Config = lib.require('shared/config')
 local Utils = lib.require('client/utils')
-local imgUrl = "https://cfx-nui-mri_Qbox/web-side/icones/logo24.png"
 
 local function formatPlayerData(data)
     return locale("player.menu.info",
@@ -92,7 +91,7 @@ local function loadFixedMenuItems(playerData)
             Config.IconAnimation,
             locale("player.menu.waypointsDescription"),
             ExecuteCommand,
-            "waypoint"
+            "waypoints"
         )
     end
 
@@ -117,7 +116,7 @@ local function registerMenu(menu)
 
     lib.registerContext({
         id = 'menu_jogador',
-        title = locale("player.menu.title", imgUrl, PlayerData.name),
+        title = locale("player.menu.title", Config.ImgUrl, PlayerData.name),
         description = locale("player.menu.description"),
         options = options
     })

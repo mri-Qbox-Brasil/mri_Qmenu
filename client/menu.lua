@@ -52,8 +52,16 @@ return {
         setMenu(menuName, menu)
     end,
     openAdminMenu = function()
-        AdminMenu.registerMenu(menus['admin'], menus['management'])
-        lib.showContext('menu_admin')
+        if lib.callback.await("mri_Qmenu:server:HasPermission", false) then
+            AdminMenu.registerMenu(menus['admin'], menus['management'])
+            lib.showContext('menu_admin')
+        else
+            lib.notify({
+                type = "error",
+                title = "Sem permissão",
+                description = "Pq sim"
+            })
+        end
     end,
     openPlayerMenu = function()
         PlayerMenu.registerMenu(menus['player'])

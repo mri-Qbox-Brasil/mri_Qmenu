@@ -6,7 +6,7 @@ defaultAdminMenuKey = "F10"
 lib.addKeybind(
     {
         name = "player_menu_kbind",
-        description = locale("keybind.player.description", defaultPlayerMenuKey),
+        description = locale("player.keybind.description"),
         defaultKey = defaultPlayerMenuKey,
         onPressed = function()
             Menu.openPlayerMenu()
@@ -17,7 +17,7 @@ lib.addKeybind(
 lib.addKeybind(
     {
         name = "admin_menu_kbind",
-        description = locale("keybind.admin.description", defaultAdminMenuKey),
+        description = locale("admin.keybind.description"),
         defaultKey = defaultAdminMenuKey,
         onPressed = function()
             Menu.openAdminMenu()

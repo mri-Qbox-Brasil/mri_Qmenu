@@ -1,7 +1,8 @@
 {
-    "admin.keybind.description": "Pressione %s para abrir o menu de administração",
+    "admin.keybind.description": "Abrir o menu de administração",
+    "admin.menu.title": "![](%s) Administração",
 
-    "player.keybind.description": "Pressione %s para abrir o menu do jogador",
+    "player.keybind.description": "Abrir o menu do jogador",
     "player.menu.title": "![](%s) Olá %s",
     "player.menu.description": " BEM VINDO À MRI QBOX",
     "player.menu.id": "Identificação",

@@ -1,6 +1,6 @@
 {
-    "admin.keybind.description": "Press %s to open the management menu",
+    "admin.keybind.description": "Open the management menu",
 
-    "player.keybind.description": "Press %s to open the player's menu",
+    "player.keybind.description": "Open the player's menu",
     "player.menu.info": "**Source**: %s | **Citizen ID**: %s %s **Name**: %s %s **Coins**: %s"
 }
