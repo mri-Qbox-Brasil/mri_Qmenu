@@ -1,14 +1,14 @@
-local function isBoss(playerData)
+local function isBoss(playerData, org)
     local result = false
     if GetResourceState("mri_Qjobsystem") == "started" then
-        result = exports.mri_Qjobsystem:CheckPlayerIsbossByJobSystemData("job", playerData)
+        result = exports.mri_Qjobsystem:CheckPlayerIsbossByJobSystemData(org, playerData)
     end
 end
 
-local function isRecruiter(playerData)
+local function isRecruiter(playerData, org)
     local result = false
     if GetResourceState("mri_Qjobsystem") == "started" then
-        result = exports.mri_Qjobsystem:CheckPlayerIsRecruiterByJobSystemData("job", playerData)
+        result = exports.mri_Qjobsystem:CheckPlayerIsRecruiterByJobSystemData(org, playerData)
     end
 end
 
@@ -88,7 +88,7 @@ local loadFixedMenuItems()
         "job"
     )
 
-    if isBoss(PlayerData) or isRecruiter(PlayerData) then
+    if isBoss(PlayerData, "job") or isRecruiter(PlayerData, "job") then
         createMenuEntry(
             options,
             locale("player.menu.manageJob"),
@@ -98,6 +98,41 @@ local loadFixedMenuItems()
             ExecuteCommand,
             "+tablet:job"
         )
+    end
+
+    createMenuEntry(
+        options,
+        locale("player.menu.gang"),
+        "gun",
+        "fade",
+        string.format("%s | %s", orgs.gangData.label, orgs.gangData.grade),
+        ExecuteCommand,
+        "gang"
+    )
+
+    if isBoss(PlayerData, "gang") or isRecruiter(PlayerData, "gang") then
+        createMenuEntry(
+            options,
+            locale("player.menu.manageJob"),
+            "users",
+            "fade",
+            locale("player.menu.manageJobDescription"),
+            ExecuteCommand,
+            "+tablet:gang"
+        )
+    end
+
+    if GetResourceState("cw-rep") == "started" then
+        createMenuEntry(
+            options,
+            locale("player.menu.rep"),
+            "book",
+            "fade",
+            locale("player.menu.repDescription"),
+            ExecuteCommand,
+            "rep"
+        )    
+    end
 end
 
 local function registerMenu(menu)
