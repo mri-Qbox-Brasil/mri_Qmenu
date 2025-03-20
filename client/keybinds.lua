@@ -1,10 +1,15 @@
+local Menu = lib.require("client/menu")
+
+defaultPlayerMenuKey = "F9"
+defaultAdminMenuKey = "F10"
+
 lib.addKeybind(
     {
         name = "player_menu_kbind",
-        description = "Pressione F9 para abrir o menu do jogador",
-        defaultKey = "F9",
-        onPressed = function(source)
-            exports["mri_Qmenu"]:OpenPlayerMenu(source)
+        description = locale("keybind.player.description", defaultPlayerMenuKey),
+        defaultKey = defaultPlayerMenuKey,
+        onPressed = function()
+            Menu.openPlayerMenu()
         end
     }
 )
@@ -12,10 +17,10 @@ lib.addKeybind(
 lib.addKeybind(
     {
         name = "admin_menu_kbind",
-        description = "Pressione F10 para abrir o menu de admin",
-        defaultKey = "F10",
-        onPressed = function(source)
-            exports["mri_Qmenu"]:OpenAdminMenu(source)
+        description = locale("keybind.admin.description", defaultAdminMenuKey),
+        defaultKey = defaultAdminMenuKey,
+        onPressed = function()
+            Menu.openAdminMenu()
         end
     }
 )

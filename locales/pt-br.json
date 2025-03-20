@@ -1,4 +1,6 @@
 {
-    "keybind.player.description": "Pressione %s para abrir o menu do jogador",
-    "keybind.admin.description": "Pressione %s para abrir o menu de administração"
+    "admin.keybind.description": "Pressione %s para abrir o menu de administração",
+
+    "player.keybind.description": "Pressione %s para abrir o menu do jogador",
+    "player.menu.info": "**ID**: %s | **RG**: %s %s **Nome**: %s %s **Coins**: %s"
 }
