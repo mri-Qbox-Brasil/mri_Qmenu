@@ -12,8 +12,8 @@
     "admin.menu.weatherDescription": "Ajustar o clima do servidor.",
 
     "player.keybind.description": "Abrir o menu do jogador",
-    "player.menu.title": "![](%s) Olá %s",
-    "player.menu.description": " BEM VINDO À MRI QBOX",
+    "player.menu.title": "![](%s) Olá, %s",
+    "player.menu.description": " BEM VINDO À %s",
     "player.menu.id": "Identificação",
     "player.menu.info": "**ID**: %s | **RG**: %s %s **Nome**: %s %s **Coins**: %s",
     "player.menu.job": "Emprego",

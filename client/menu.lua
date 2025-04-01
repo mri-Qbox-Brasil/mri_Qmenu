@@ -83,7 +83,7 @@ return {
         end
     end,
     openPlayerMenu = function()
-        PlayerMenu.registerMenu(getMenu("player"))
+        PlayerMenu.registerMenu(getMenu("player"), categories)
         lib.showContext(Config.MenuNameConstant .. "player")
     end
 }

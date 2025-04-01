@@ -14,6 +14,7 @@ Normalmente não é necessário nenhum ajuste neste script. Em casos específico
 ```lua
 Config = {
     MenuNameConstant = "mri_Qmenu_",
+    ServerName = "MRI QBOX",
     Debug = true,                                    -- true, false
     ImgUrl = "https://cfx-nui-mri_Qbox/web-side/icones/logo24.png",
     IconAnimation = "fade",                          -- spin, spinPulse, spinReverse, pulse, beat, fade, beatFade, bounce

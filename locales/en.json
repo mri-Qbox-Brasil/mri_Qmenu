@@ -1,6 +1,36 @@
 {
     "admin.keybind.description": "Open the management menu",
+    "admin.menu.title": "![](%s) Management",
+    "admin.menu.description": "Server management",
+    "admin.menu.admin": "Admin Panel",
+    "admin.menu.adminDescription": "Open the Admin Panel.",
+    "admin.menu.customs": "Customize Vehicle",
+    "admin.menu.customsDescription": "Customize the current vehicle.",
+    "admin.menu.clock": "Clock",
+    "admin.menu.clockDescription": "Adjust the server time.",
+    "admin.menu.weather": "Weather",
+    "admin.menu.weatherDescription": "Adjust the server weather.",
 
     "player.keybind.description": "Open the player's menu",
-    "player.menu.info": "**Source**: %s | **Citizen ID**: %s %s **Name**: %s %s **Coins**: %s"
+    "player.menu.title": "![](%s) Hello, %s",
+    "player.menu.description": "WELCOME TO %s",
+    "player.menu.id": "Identification",
+    "player.menu.info": "**Source**: %s | **Citizen ID**: %s %s **Name**: %s %s **Coins**: %s",
+    "player.menu.job": "Job",
+    "player.menu.manageJob": "Manage Job",
+    "player.menu.manageJobDescription": "Job settings.",
+    "player.menu.gang": "Gang",
+    "player.menu.manageGang": "Manage Gang",
+    "player.menu.manageGangDescription": "Gang settings.",
+    "player.menu.rep": "Reputation",
+    "player.menu.repDescription": "Check your reputation.",
+    "player.menu.skill": "Skills",
+    "player.menu.skillDescription": "View your skills.",
+    "player.menu.waypoints": "Points of Interest",
+    "player.menu.waypointsDescription": "View your points of interest.",
+
+    "error.admin.menu.notAllowedTitle": "No permission",
+    "error.admin.menu.notAllowedDescription": "You do not have permission to perform this action.",
+    "error.admin.menu.reservedWord": "Reserved word",
+    "error.admin.menu.reservedWordDescription": "You cannot use this word: %s."
 }
