@@ -33,7 +33,7 @@ return {
             return
         end
         local index = getItemIndex(menu, item.title, "add")
-        menu[index] = Utils.createMenuItem(item.title, item.icon, item.iconAnimation, item.description, item.onSelectFunction, item.onSelectArg, item.arrow)
+        menu[index] = Utils.createMenuItem(item)
         setMenu(menuName, menu)
     end,
     removeItemFromMenu = function(menuName, itemName)
@@ -48,13 +48,23 @@ return {
         menu[index] = nil
         setMenu(menuName, menu)
     end,
-    addCategory = function(name, data)
-        categories[name] = {
-            displayName = displayName,
-            description = description,
-            icon = icon,
-            iconAnimation = iconAnimation,
-            parentMenu = parentMenu
+    addCategory = function(category)
+        if (category.displayName == "admin") or (category.displayName == "player") then
+            print(
+                string.format(
+                    "%s: %s",
+                    locale("error.admin.menu.reservedWord"),
+                    locale("error.admin.menu.reservedWordDescription", category.displayName)
+                )
+            )
+            return
+        end
+        categories[category.displayName] = {
+            displayName = category.displayName,
+            description = category.description,
+            icon = category.icon,
+            iconAnimation = category.iconAnimation,
+            parentMenu = category.parentMenu
         }
     end,
     removeCategory = function(name)
@@ -62,8 +72,8 @@ return {
     end,
     openAdminMenu = function()
         if lib.callback.await("mri_Qmenu:server:HasPermission", false) then
-            AdminMenu.registerMenu(getMenu("admin"), getMenu("management"))
-            lib.showContext("menu_admin")
+            AdminMenu.registerMenu(getMenu("admin"), categories)
+            lib.showContext(Config.MenuNameConstant .. "admin")
         else
             lib.notify({
                 type = "error",
@@ -74,6 +84,6 @@ return {
     end,
     openPlayerMenu = function()
         PlayerMenu.registerMenu(getMenu("player"))
-        lib.showContext("menu_jogador")
+        lib.showContext(Config.MenuNameConstant .. "player")
     end
 }

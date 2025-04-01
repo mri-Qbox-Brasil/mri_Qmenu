@@ -1,5 +1,5 @@
-local Config = lib.require('shared/config')
-local Utils = lib.require('client/utils')
+local Config = lib.require("shared/config")
+local Utils = lib.require("client/utils")
 
 local function formatPlayerData(data)
     return locale("player.menu.info",
@@ -16,83 +16,83 @@ local function loadFixedMenuItems(playerData)
     local orgs = Utils.getPlayerOrgs(playerData)
     local options = {}
 
-    options[#options + 1] = Utils.createMenuItem(
-        locale("player.menu.id"),
-        "fas fa-address-card",
-        Config.IconAnimation,
-        formatPlayerData(playerData),
-        ExecuteCommand,
-        "id"
-    )
+    options[#options + 1] = Utils.createMenuItem({
+        title = locale("player.menu.id"),
+        icon = "fas fa-address-card",
+        iconAnimation = Config.IconAnimation,
+        description = formatPlayerData(playerData),
+        onSelectFunction = ExecuteCommand,
+        onSelectArg = "id",
+    })
 
-    options[#options + 1] = Utils.createMenuItem(
-        locale("player.menu.job"),
-        "fas fa-briefcase",
-        Config.IconAnimation,
-        string.format("%s | %s", orgs.jobData.label, orgs.jobData.grade),
-        ExecuteCommand,
-        "job"
-    )
+    options[#options + 1] = Utils.createMenuItem({
+        title = locale("player.menu.job"),
+        icon = "fas fa-briefcase",
+        iconAnimation = Config.IconAnimation,
+        description = string.format("%s | %s", orgs.jobData.label, orgs.jobData.grade),
+        onSelectFunction = ExecuteCommand,
+        onSelectArg = "job"
+    })
 
     if Utils.isBoss(playerData, "job") or Utils.isRecruiter(playerData, "job") then
-        options[#options + 1] = Utils.createMenuItem(
-            locale("player.menu.manageJob"),
-            "users",
-            Config.IconAnimation,
-            locale("player.menu.manageJobDescription"),
-            ExecuteCommand,
-            "+tablet:job"
-        )
+        options[#options + 1] = Utils.createMenuItem({
+            title = locale("player.menu.manageJob"),
+            icon = "users",
+            iconAnimation = Config.IconAnimation,
+            description = locale("player.menu.manageJobDescription"),
+            onSelectFunction = ExecuteCommand,
+            onSelecArg = "+tablet:job"
+        })
     end
 
-    options[#options + 1] = Utils.createMenuItem(
-        locale("player.menu.gang"),
-        "gun",
-        Config.IconAnimation,
-        string.format("%s | %s", orgs.gangData.label, orgs.gangData.grade),
-        ExecuteCommand,
-        "gang"
-    )
+    options[#options + 1] = Utils.createMenuItem({
+        title = locale("player.menu.gang"),
+        icon = "gun",
+        iconAnimation = Config.IconAnimation,
+        description = string.format("%s | %s", orgs.gangData.label, orgs.gangData.grade),
+        onSelectFunction = ExecuteCommand,
+        onSelectArg = "gang"
+    })
 
     if Utils.isBoss(playerData, "gang") or Utils.isRecruiter(playerData, "gang") then
-        options[#options + 1] = Utils.createMenuItem(
-            locale("player.menu.manageGang"),
-            "users",
-            Config.IconAnimation,
-            locale("player.menu.manageGangDescription"),
-            ExecuteCommand,
-            "+tablet:gang"
-        )
+        options[#options + 1] = Utils.createMenuItem({
+            title = locale("player.menu.manageGang"),
+            icon = "users",
+            iconAnimation = Config.IconAnimation,
+            description = locale("player.menu.manageGangDescription"),
+            onSelectFunction = ExecuteCommand,
+            onSelectArg = "+tablet:gang"
+        })
     end
 
     if GetResourceState("cw-rep") == "started" then
-        options[#options + 1] = Utils.createMenuItem(
-            locale("player.menu.rep"),
-            "book",
-            Config.IconAnimation,
-            locale("player.menu.repDescription"),
-            ExecuteCommand,
-            "rep"
-        )
-        options[#options + 1] = Utils.createMenuItem(
-            locale("player.menu.skill"),
-            "fa-solid fa-book-bookmark",
-            Config.IconAnimation,
-            locale("player.menu.skillDescription"),
-            ExecuteCommand,
-            "skill"
-        )
+        options[#options + 1] = Utils.createMenuItem({
+            title = locale("player.menu.rep"),
+            icon = "book",
+            iconAnimation = Config.IconAnimation,
+            description = locale("player.menu.repDescription"),
+            onSelectFunction = ExecuteCommand,
+            onSelectArg = "rep"
+        })
+        options[#options + 1] = Utils.createMenuItem({
+            title = locale("player.menu.skill"),
+            icon = "fa-solid fa-book-bookmark",
+            iconAnimation = Config.IconAnimation,
+            description = locale("player.menu.skillDescription"),
+            onSelectFunction = ExecuteCommand,
+            onSelectArg = "skill"
+        })
     end
 
     if GetResourceState("pickle_waypoints") == "started" then
-        options[#options + 1] = Utils.createMenuItem(
-                locale("player.menu.waypoints"),
-            "location-dot",
-            Config.IconAnimation,
-            locale("player.menu.waypointsDescription"),
-            ExecuteCommand,
-            "waypoints"
-        )
+        options[#options + 1] = Utils.createMenuItem({
+            title = locale("player.menu.waypoints"),
+            icon = "location-dot",
+            iconAnimation = Config.IconAnimation,
+            description = locale("player.menu.waypointsDescription"),
+            onSelectFunction = ExecuteCommand,
+            onSelectArg = "waypoints"
+        })
     end
 
     -- Adicione mais menus fixos aqui :)
@@ -115,7 +115,7 @@ local function registerMenu(menu)
     options = loadRuntimeMenuItems(options, menu)
 
     lib.registerContext({
-        id = 'menu_jogador',
+        id = Config.MenuNameConstant .. "player",
         title = locale("player.menu.title", Config.ImgUrl, PlayerData.name),
         description = locale("player.menu.description"),
         options = options

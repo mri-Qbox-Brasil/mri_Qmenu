@@ -1,12 +1,12 @@
 local Menu = lib.require("client/menu")
 
 local function addManageMenu(item)
-    Menu.removeItemFromMenu("management", item.title)
-    Menu.addItemToMenu("management", item)
+    Menu.removeItemFromMenu("admin", item.title)
+    Menu.addItemToMenu("admin", item)
 end
 
 local function removeManageMenu(item)
-    Menu.removeItemFromMenu("management", item.title)
+    Menu.removeItemFromMenu("admin", item.title)
 end
 
 local function addPlayerMenu(item)
@@ -24,3 +24,5 @@ exports("AddPlayerMenu", addPlayerMenu)
 exports("RemovePlayerMenu", removePlayerMenu)
 exports("AddItemToMenu", Menu.addItemToMenu)
 exports("RemoveItemFromMenu", Menu.removeItemFromMenu)
+exports("AddCategory", Menu.addCategory)
+exports("RemoveCategory", Menu.removeCategory)

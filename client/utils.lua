@@ -31,18 +31,19 @@ return {
         end
         return false
     end,
-    createMenuItem = function(title, icon, iconAnimation, description, onSelectFunction, onSelectArg, arrow)
+    createMenuItem = function(item)
         return {
-            title = title,
-            icon = icon,
-            iconAnimation = iconAnimation,
-            description = description,
-            arrow = arrow or false,
+            title = item.title,
+            icon = item.icon,
+            iconAnimation = item.iconAnimation,
+            description = item.description,
+            arrow = item['arrow'] or false,
+            category = item['category'] or nil,
             onSelect = function()
-                if onSelectArg then
-                    onSelectFunction(onSelectArg)
+                if item.onSelectArg then
+                    item.onSelectFunction(item.onSelectArg)
                 else
-                    onSelectFunction()
+                    item.onSelectFunction()
                 end
             end
         }

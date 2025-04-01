@@ -30,5 +30,7 @@
     "player.menu.waypointsDescription": "Ver seus pontos de interesse.",
 
     "error.admin.menu.notAllowedTitle": "Sem permissão",
-    "error.admin.menu.notAllowedDescription": "Você não tem permissão para executar essa ação."
+    "error.admin.menu.notAllowedDescription": "Você não tem permissão para executar essa ação.",
+    "error.admin.menu.reservedWord": "Palavra reservada",
+    "error.admin.menu.reservedWordDescription": "Você não pode usar essa palavra: %s."
 }
