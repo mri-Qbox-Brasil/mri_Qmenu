@@ -26,7 +26,7 @@ local function setMenu(menuName, data)
 end
 
 return {
-    addItemToMenu = function(menuName, item, category)
+    addItemToMenu = function(menuName, item)
         local menu = getMenu(menuName)
         if not menu then
             print(string.format("Menu "%s" not found", menuName))
@@ -49,17 +49,17 @@ return {
         setMenu(menuName, menu)
     end,
     addCategory = function(category)
-        if (category.displayName == "admin") or (category.displayName == "player") then
+        if (category.name == "admin") or (category.name == "player") then
             print(
                 string.format(
                     "%s: %s",
                     locale("error.admin.menu.reservedWord"),
-                    locale("error.admin.menu.reservedWordDescription", category.displayName)
+                    locale("error.admin.menu.reservedWordDescription", category.name)
                 )
             )
             return
         end
-        categories[category.displayName] = {
+        categories[category.name] = {
             displayName = category.displayName,
             description = category.description,
             icon = category.icon,

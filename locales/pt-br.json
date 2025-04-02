@@ -10,6 +10,8 @@
     "admin.menu.clockDescription": "Ajustar o horário do servidor.",
     "admin.menu.weather": "Clima",
     "admin.menu.weatherDescription": "Ajustar o clima do servidor.",
+    "admin.menu.manageCategory": "Gerenciamento",
+    "admin.menu.manageCategoryDescription": "Acesso a opções de gerenciamento do servidor.",
 
     "player.keybind.description": "Abrir o menu do jogador",
     "player.menu.title": "![](%s) Olá, %s",

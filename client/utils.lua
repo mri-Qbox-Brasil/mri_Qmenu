@@ -1,20 +1,36 @@
-local function OpenSubMenu(category, menu)
+local defaultCategory = {
+    displayName = "Default",
+    description = "Default category",
+    icon = "fa-solid fa-folder",
+    iconAnimation = Config.IconAnimation,
+}
+
+local function OpenSubMenu(categoryName, categoryData, menu)
     local options = {}
     for k, v in pairs(menu) do
-        if v.category == category.displayName then
+        if v.category == categoryName then
             options[#options + 1] = v
         end
     end
     lib.registerContext(
         {
-            id = Config.MenuNameConstant .. category.displayName,
-            title = category.displayName,
-            description = category.description,
-            menu = Config.MenuNameConstant .. category.parentMenu,
+            id = Config.MenuNameConstant .. categoryData.displayName,
+            title = categoryData.displayName,
+            description = categoryData.description,
+            menu = Config.MenuNameConstant .. categoryData.parentMenu,
             options = options
         }
     )
-    lib.showContext(Config.MenuNameConstant .. category.displayName)
+    lib.showContext(Config.MenuNameConstant .. categoryData.displayName)
+end
+
+local function getCategory(categories, name)
+    local category = categories[name]
+    if not category then
+        print(string.format("Category '%s' not found", name))
+        return defaultCategory
+    end
+    return category
 end
 
 return {
@@ -68,14 +84,13 @@ return {
         }
     end,
     loadRuntimeMenuItems = function(finalMenu, runtimeMenu, categories)
-        if (not runtimeMenu == nil) or (#runtimeMenu > 0) then
+        if (#runtimeMenu > 0) then
             for k, v in pairs(runtimeMenu) do
                 if v["category"] then
+                    local category = getCategory(categories, v.category)
                     local found = false
-                    local category = categories[v.category]
                     for k2, v2 in pairs(finalMenu) do
                         if v2.title == category.displayName then
-                            v2.options[#v2.options + 1] = v
                             found = true
                             break
                         end
@@ -88,7 +103,7 @@ return {
                             description = category.description,
                             arrow = true,
                             onSelect = function()
-                                OpenSubMenu(category, runtimeMenu)
+                                OpenSubMenu(v.category, category, runtimeMenu)
                             end
                         }
                     end
@@ -96,6 +111,8 @@ return {
                     finalMenu[#finalMenu + 1] = v
                 end
             end
+        else
+            print("No runtime menu items found")
         end
         return finalMenu
     end

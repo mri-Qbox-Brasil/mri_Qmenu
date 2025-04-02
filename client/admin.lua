@@ -59,9 +59,114 @@ local function loadFixedMenuItems()
     return options
 end
 
+local function loadManageMenuFixedItems(options, categories)
+    categories["manage"] = {
+        displayName = locale("admin.menu.manageCategory"),
+        description = locale("admin.menu.manageCategoryDescription"),
+        icon = "fa-solid fa-cogs",
+        iconAnimation = Config.IconAnimation,
+        parentMenu = "admin"
+    }
+
+    if (GetResourceState("ox_doorlock") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Portas",
+                icon = "door-closed",
+                iconAnimation = Config.IconAnimation,
+                description = "Crie ou gerencie as trancas de portas e portões do servidor.",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "doorlock",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qblips") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Blips",
+                icon = "location-dot",
+                iconAnimation = Config.IconAnimation,
+                description = "Crie ou gerencie todos os blips, você pode copiar as configurações de um já criado.  ",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "blip",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qstashes") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Baús",
+                icon = "box",
+                iconAnimation = Config.IconAnimation,
+                description = "Crie ou gerencie os baús do servidor, você pode restringir por permissões ou senha.",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "bau",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qnpc") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "NPC",
+                icon = "users-gear",
+                iconAnimation = Config.IconAnimation,
+                description = "Crie ou gerencie os NPCs do servidor, você pode colocar animações nos NPCs.",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "npc",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qobjects") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Props",
+                icon = "tree",
+                iconAnimation = Config.IconAnimation,
+                description = "Crie ou gerencie os props criados do servidor, você pode editar e criar cenários.",
+                category = "manage",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "objectspawner"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qelevators") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Elevador",
+                icon = "elevator",
+                iconAnimation = Config.IconAnimation,
+                description = "Crie ou gerencie os elevadores criados, você pode criar quantos andares forem necessários.",
+                category = "manage",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "elevador"
+            }
+        )
+    end
+
+    -- Adicione mais menus fixos aqui :)
+
+    return categories, options
+end
+
 local function registerMenu(menu, categories)
     local options = loadFixedMenuItems()
-    options = Utils.loadRuntimeMenuItems(options, menu, categories)
+    local cats, finalMenu = loadManageMenuFixedItems(menu, categories)
+    options = Utils.loadRuntimeMenuItems(options, finalMenu, cats)
     lib.registerContext(
         {
             id = Config.MenuNameConstant .. "admin",
