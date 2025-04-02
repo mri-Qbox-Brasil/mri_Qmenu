@@ -25,7 +25,7 @@ local function loadFixedMenuItems()
                 iconAnimation = Config.IconAnimation,
                 description = locale("admin.menu.customsDescription"),
                 onSelectFunction = ExecuteCommand,
-                onSelecArg = "customs"
+                onSelectArg = "customs"
             }
         )
     end
@@ -38,7 +38,7 @@ local function loadFixedMenuItems()
             iconAnimation = Config.IconAnimation,
             description = locale("admin.menu.clockDescription"),
             onSelectFunction = ExecuteCommand, -- AbrirMenuTime()
-            onSelecArg = "clock"
+            onSelectArg = "clock"
         }
     )
 
@@ -50,7 +50,7 @@ local function loadFixedMenuItems()
             iconAnimation = Config.IconAnimation,
             description = locale("admin.menu.weatherDescription"),
             onSelectFunction = ExecuteCommand,
-            onSelecArg = "weather"
+            onSelectArg = "weather"
         }
     )
 
@@ -136,9 +136,9 @@ local function loadManageMenuFixedItems(options, categories)
                 icon = "tree",
                 iconAnimation = Config.IconAnimation,
                 description = "Crie ou gerencie os props criados do servidor, você pode editar e criar cenários.",
-                category = "manage",
                 onSelectFunction = ExecuteCommand,
-                onSelectArg = "objectspawner"
+                onSelectArg = "objectspawner",
+                category = "manage"
             }
         )
     end
@@ -151,9 +151,84 @@ local function loadManageMenuFixedItems(options, categories)
                 icon = "elevator",
                 iconAnimation = Config.IconAnimation,
                 description = "Crie ou gerencie os elevadores criados, você pode criar quantos andares forem necessários.",
-                category = "manage",
                 onSelectFunction = ExecuteCommand,
-                onSelectArg = "elevador"
+                onSelectArg = "elevador",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qdraw") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Outdoors/Posters",
+                icon = "panorama",
+                iconAnimation = "fade",
+                description = "Crie ou gerencie os outdoors ou imagens criados do servidor, você pode adicionar ou remover.",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "outdoors",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("rhd_garage") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Garagens",
+                icon = "warehouse",
+                iconAnimation = "fade",
+                description = "Crie ou gerencie as garagens criadas do servidor, você pode definir todas as opções in game.",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "garagelist",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qcrafting") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Crafting",
+                icon = "tools",
+                iconAnimation = "fade",
+                description = "Crie ou gerencie mesas de fabricação do servidor, você pode usar props para a mesa.",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "crafting",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qjobsystem") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Grupos",
+                icon = "briefcase",
+                iconAnimation = "fade",
+                description = "Crie ou gerencie grupos, trabalhos e facções (Jobs e Gangs) in game.",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "groups",
+                category = "manage"
+            }
+        )
+    end
+
+    if (GetResourceState("mri_Qspotlights") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = "Spotlight",
+                icon = "lightbulb",
+                iconAnimation = "fade",
+                description = "Crie ou gerencie luzes in game",
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "spotlight",
+                category = "manage",
             }
         )
     end
