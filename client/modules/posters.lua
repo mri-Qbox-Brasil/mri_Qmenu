@@ -18,8 +18,28 @@ local function OpenMenu(mainMenu)
                 end
             },
             {
+                title = 'Deletar poster',
+                description = 'Deletar um poster.',
+                icon = 'trash-can',
+                iconAnimation = 'fade',
+                arrow = true,
+                onSelect = function()
+                    local input = lib.inputDialog('Deletar Poster', {
+                        { type = 'input', label = 'ID do poster' }
+                    })
+                    if input then
+                        ExecuteCommand('rw_draw++/rem ' .. input[1])
+                        lib.notify({
+                            title = 'Deletar Poster',
+                            description = 'Poster deletado com sucesso.',
+                            type = 'success'
+                        })
+                    end
+                end
+            },
+            {
                 title = 'Modo DEV',
-                description = 'para deletar use o comando rw_draw++/rem id_do_poster',
+                description = 'Habilita o modo DEV para gerenciar os posters.',
                 icon = 'list-check',
                 iconAnimation = 'fade',
                 arrow = true,
