@@ -25,6 +25,9 @@ local function OpenMenu(mainMenu)
                                 {type = "number", label = locale("time.dialog.minute"), default = 0, min = 0, max = 59}
                             }
                         )
+                        if not input then
+                            return
+                        end
 
                         ExecuteCommand("time " .. input[1] .. " " .. input[2])
                     end
@@ -48,6 +51,9 @@ local function OpenMenu(mainMenu)
                                 }
                             }
                         )
+                        if not input then
+                            return
+                        end
 
                         ExecuteCommand("timescale " .. input[1])
                     end

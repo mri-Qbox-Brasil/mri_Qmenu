@@ -33,16 +33,17 @@ local function OpenMenu(mainMenu)
                                 {type = "input", label = locale("posters.dialog.label")}
                             }
                         )
-                        if input then
-                            ExecuteCommand("rw_draw++/rem " .. input[1])
-                            lib.notify(
-                                {
-                                    title = locale("posters.menu.remove"),
-                                    description = locale("posters.notification.message"),
-                                    type = "success"
-                                }
-                            )
+                        if not input then
+                            return
                         end
+                        ExecuteCommand("rw_draw++/rem " .. input[1])
+                        lib.notify(
+                            {
+                                title = locale("posters.menu.remove"),
+                                description = locale("posters.notification.message"),
+                                type = "success"
+                            }
+                        )
                     end
                 },
                 {
