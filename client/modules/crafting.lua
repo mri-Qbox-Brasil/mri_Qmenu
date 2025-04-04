@@ -13,7 +13,7 @@ local function OpenMenu(mainMenu)
                     title = locale("crafting.menu.add"),
                     description = locale("crafting.menu.addDescription"),
                     icon = "square-plus",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("craft:create")
@@ -23,7 +23,7 @@ local function OpenMenu(mainMenu)
                     title = locale("crafting.menu.list"),
                     description = locale("crafting.menu.listDescription"),
                     icon = "list",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("craft:edit")

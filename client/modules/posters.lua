@@ -13,7 +13,7 @@ local function OpenMenu(mainMenu)
                     title = locale("posters.menu.add"),
                     description = locale("posters.menu.addDescription"),
                     icon = "square-plus",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = false,
                     onSelect = function()
                         ExecuteCommand("rw_draw++/draw")
@@ -23,7 +23,7 @@ local function OpenMenu(mainMenu)
                     title = locale("posters.menu.remove"),
                     description = locale("posters.menu.removeDescription"),
                     icon = "trash-can",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         local input =
@@ -49,7 +49,7 @@ local function OpenMenu(mainMenu)
                     title = locale("posters.menu.devMode"),
                     description = locale("posters.menu.devModeDescription"),
                     icon = "list-check",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("rw_draw++/dev")

@@ -13,7 +13,7 @@ local function OpenMenu(mainMenu)
                     title = locale("jobs.menu.add"),
                     description = locale("jobs.menu.addDescription"),
                     icon = "square-plus",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("createjob")
@@ -23,7 +23,7 @@ local function OpenMenu(mainMenu)
                     title = locale("jobs.menu.list"),
                     description = locale("jobs.menu.listDescription"),
                     icon = "list",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("open_jobs")

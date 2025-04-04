@@ -1,3 +1,4 @@
+ColorScheme = GlobalState.UIColors or {}
 local Config = lib.require("shared/config")
 local menuName = Config.MenuNameConstant .. "time"
 
@@ -6,22 +7,22 @@ local function OpenMenu(mainMenu)
     lib.registerContext(
         {
             id = menuName,
-            title = "Gerenciar Horário",
+            title = locale("time.menu.title"),
+            description = locale("time.menu.description"),
             menu = mainMenu,
             options = {
                 {
-                    title = "Alterar horário",
-                    description = "Modificar a hora atual do servidor.                                         " ..
-                        "*/time [hh] [mm]*",
+                    title = locale("time.menu.set"),
+                    description = locale("time.menu.setDescription"),
                     icon = "clock",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     onSelect = function()
                         local input =
                             lib.inputDialog(
-                            "Alterar horário",
+                            locale("time.menu.set"),
                             {
-                                {type = "number", label = "Hora", default = 12, min = 0, max = 24},
-                                {type = "number", label = "Minutos", default = 0, min = 0, max = 59}
+                                {type = "number", label = locale("time.dialog.hour"), default = 12, min = 0, max = 24},
+                                {type = "number", label = locale("time.dialog.minute"), default = 0, min = 0, max = 59}
                             }
                         )
 
@@ -29,24 +30,20 @@ local function OpenMenu(mainMenu)
                     end
                 },
                 {
-                    title = "Escala do tempo",
-                    description = "Modificar durará 1 minuto.                                                       " ..
-                        "**Valor atual: " ..
-                            GlobalState.timeScale ..
-                                "**                                                                 " ..
-                                    "*/timescale [ms]*",
+                    title = locale("time.menu.timescale"),
+                    description = locale("time.menu.timescaleDescription", GlobalState.timeScale),
                     icon = "stopwatch",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     onSelect = function()
                         local input =
                             lib.inputDialog(
-                            "Escala do tempo",
+                            locale("time.menu.timescale"),
                             {
                                 {
                                     type = "number",
-                                    label = "Modificar",
-                                    description = "Quanto será 1 minuto no jogo (Ex.: 3000, a cada 3 segundos irá passar 1 minuto no relógio do jogo)",
-                                    default = 3000,
+                                    label = locale("time.dialog.timescale"),
+                                    description = locale("time.dialog.timescaleDescription"),
+                                    default = GlobalState.timeScale,
                                     min = 3000
                                 }
                             }
@@ -56,14 +53,14 @@ local function OpenMenu(mainMenu)
                     end
                 },
                 {
-                    title = "Congelar/Descongelar",
-                    description = "Congele ou descongele o tempo.                                                                " ..
-                        "**Valor atual: " ..
-                            freezeTime ..
-                                "**                                                                   " ..
-                                    "*/freezetime [1 ou 0]*",
-                    icon = "snowflake",
-                    iconAnimation = "fade",
+                    title = locale("time.menu.freeze"),
+                    description = locale(
+                        "time.menu.freezeDescription",
+                        freezeTime and locale("misc.yes") or locale("misc.no")
+                    ),
+                    icon = freezeTime and "snowflake" or "snowflake-slash",
+                    iconColor = freezeTime and ColorScheme.info or ColorScheme.success,
+                    iconAnimation = Config.IconAnimation,
                     onSelect = function()
                         if freezetime == 0 then
                             freezetime = 1

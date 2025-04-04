@@ -1,3 +1,4 @@
+ColorScheme = GlobalState.UIColors or {}
 local Config = lib.require("shared/config")
 local menuName = Config.MenuNameConstant .. "spotlight"
 
@@ -6,23 +7,25 @@ local function OpenMenu(mainMenu)
         {
             id = menuName,
             menu = mainMenu,
-            title = "Gerenciar Spotlights",
+            title = locale("spotlight.menu.title"),
+            description = locale("spotlight.menu.description"),
             options = {
                 {
-                    title = "Criar novo spotlight",
-                    description = "Crie um spotlight.",
+                    title = locale("spotlight.menu.add"),
+                    description = locale("spotlight.menu.addDescription"),
                     icon = "square-plus",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("spotlight")
                     end
                 },
                 {
-                    title = "Deletar",
-                    description = "Delete algum spotlight",
-                    icon = "x",
-                    iconAnimation = "fade",
+                    title = locale("spotlight.menu.remove"),
+                    description = locale("spotlight.menu.removeDescription"),
+                    icon = "trash-can",
+                    iconColor = ColorScheme.danger,
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("spotlight 1")

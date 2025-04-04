@@ -13,7 +13,7 @@ local function OpenMenu(mainMenu)
                     title = locale("waypoint.menu.clear"),
                     description = locale("waypoint.menu.clearDescription"),
                     icon = "trash",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     onSelect = function()
                         ExecuteCommand("clearwaypoints")
                     end
@@ -22,7 +22,7 @@ local function OpenMenu(mainMenu)
                     title = locale("waypoint.menu.settings"),
                     description = locale("waypoint.menu.settingsDescription"),
                     icon = "location-dot",
-                    iconAnimation = "fade",
+                    iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()
                         ExecuteCommand("waypointsettings")
