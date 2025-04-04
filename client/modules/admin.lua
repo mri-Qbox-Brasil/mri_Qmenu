@@ -79,10 +79,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Portas",
+                title = locale("admin.menu.doors"),
                 icon = "door-closed",
                 iconAnimation = Config.IconAnimation,
-                description = "Crie ou gerencie as trancas de portas e portões do servidor.",
+                description = locale("admin.menu.doorsDescription"),
                 onSelectFunction = ExecuteCommand,
                 onSelectArg = "doorlock",
                 category = "manage"
@@ -94,10 +94,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Blips",
+                title = locale("admin.menu.blips"),
                 icon = "location-dot",
                 iconAnimation = Config.IconAnimation,
-                description = "Crie ou gerencie todos os blips, você pode copiar as configurações de um já criado.  ",
+                description = locale("admin.menu.blipsDescription"),
                 onSelectFunction = ExecuteCommand,
                 onSelectArg = "blip",
                 category = "manage"
@@ -109,10 +109,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Baús",
+                title = locale("admin.menu.stashes"),
                 icon = "box",
                 iconAnimation = Config.IconAnimation,
-                description = "Crie ou gerencie os baús do servidor, você pode restringir por permissões ou senha.",
+                description = locale("admin.menu.stashesDescription"),
                 onSelectFunction = ExecuteCommand,
                 onSelectArg = "bau",
                 category = "manage"
@@ -124,10 +124,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "NPC",
+                title = locale("admin.menu.npc"),
                 icon = "users-gear",
                 iconAnimation = Config.IconAnimation,
-                description = "Crie ou gerencie os NPCs do servidor, você pode colocar animações nos NPCs.",
+                description = locale("admin.menu.npcDescription"),
                 onSelectFunction = ExecuteCommand,
                 onSelectArg = "npc",
                 category = "manage"
@@ -139,10 +139,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Props",
+                title = locale("admin.menu.props"),
                 icon = "tree",
                 iconAnimation = Config.IconAnimation,
-                description = "Crie ou gerencie os props criados do servidor, você pode editar e criar cenários.",
+                description = locale("admin.menu.propsDescription"),
                 onSelectFunction = ExecuteCommand,
                 onSelectArg = "objectspawner",
                 category = "manage"
@@ -154,10 +154,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Elevador",
+                title = locale("admin.menu.elevators"),
                 icon = "elevator",
                 iconAnimation = Config.IconAnimation,
-                description = "Crie ou gerencie os elevadores criados, você pode criar quantos andares forem necessários.",
+                description = locale("admin.menu.elevatorsDescription"),
                 onSelectFunction = ExecuteCommand,
                 onSelectArg = "elevador",
                 category = "manage"
@@ -169,10 +169,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Outdoors/Posters",
+                title = locale("admin.menu.posters"),
                 icon = "panorama",
                 iconAnimation = "fade",
-                description = "Crie ou gerencie os outdoors ou imagens criados do servidor, você pode adicionar ou remover.",
+                description = locale("admin.menu.postersDescription"),
                 onSelectFunction = function()
                     Posters.openMenu(Config.MenuNameConstant .. "manage")
                 end,
@@ -185,10 +185,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Garagens",
+                title = locale("admin.menu.garages"),
                 icon = "warehouse",
                 iconAnimation = "fade",
-                description = "Crie ou gerencie as garagens criadas do servidor, você pode definir todas as opções in game.",
+                description = locale("admin.menu.garagesDescription"),
                 onSelectFunction = ExecuteCommand,
                 onSelectArg = "garagelist",
                 category = "manage"
@@ -200,10 +200,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Crafting",
+                title = locale("admin.menu.crafting"),
                 icon = "tools",
                 iconAnimation = "fade",
-                description = "Crie ou gerencie mesas de fabricação do servidor, você pode usar props para a mesa.",
+                description = locale("admin.menu.craftingDescription"),
                 onSelectFunction = function()
                     Crafting.openMenu(Config.MenuNameConstant .. "manage")
                 end,
@@ -216,10 +216,10 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Grupos",
+                title = locale("admin.menu.jobs"),
                 icon = "briefcase",
                 iconAnimation = "fade",
-                description = "Crie ou gerencie grupos, trabalhos e facções (Jobs e Gangs) in game.",
+                description = locale("admin.menu.jobsDescription"),
                 onSelectFunction = function()
                     Jobs.openMenu(Config.MenuNameConstant .. "manage")
                 end,
@@ -232,14 +232,14 @@ local function loadManageMenuFixedItems(options, categories)
         options[#options + 1] =
             Utils.createMenuItem(
             {
-                title = "Spotlight",
+                title = locale("admin.menu.spotlights"),
                 icon = "lightbulb",
                 iconAnimation = "fade",
-                description = "Crie ou gerencie luzes in game",
+                description = locale("admin.menu.spotlightsDescription"),
                 onSelectFunction = function()
                     Spotlight.openMenu(Config.MenuNameConstant .. "manage")
                 end,
-                category = "manage",
+                category = "manage"
             }
         )
     end
