@@ -111,8 +111,6 @@ return {
                     finalMenu[#finalMenu + 1] = v
                 end
             end
-        else
-            print("No runtime menu items found")
         end
         return finalMenu
     end

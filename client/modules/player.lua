@@ -1,5 +1,6 @@
 local Config = lib.require("shared/config")
 local Utils = lib.require("client/utils")
+local Waypoint = lib.require("client/modules/waypoint")
 
 local function formatPlayerData(data)
     return locale(
@@ -115,7 +116,7 @@ local function loadFixedMenuItems(playerData)
                 iconAnimation = Config.IconAnimation,
                 description = locale("player.menu.waypointsDescription"),
                 onSelectFunction = function()
-                    TriggerEvent('pickle_waypoints:client:openWaypointMenu')
+                    Waypoint.openMenu(Config.MenuNameConstant .. "player")
                 end
             }
         )

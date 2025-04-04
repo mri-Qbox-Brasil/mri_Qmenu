@@ -6,27 +6,26 @@ local function OpenMenu(mainMenu)
         {
             id = menuName,
             menu = mainMenu,
-            title = locale("crafting.menu.title"),
-            description = locale("crafting.menu.description"),
+            title = locale("waypoint.menu.title"),
+            description = locale("waypoint.menu.description"),
             options = {
                 {
-                    title = locale("crafting.menu.add"),
-                    description = locale("crafting.menu.addDescription"),
-                    icon = "square-plus",
+                    title = locale("waypoint.menu.clear"),
+                    description = locale("waypoint.menu.clearDescription"),
+                    icon = "trash",
                     iconAnimation = "fade",
-                    arrow = true,
                     onSelect = function()
-                        ExecuteCommand("craft:create")
+                        ExecuteCommand("clearwaypoints")
                     end
                 },
                 {
-                    title = locale("crafting.menu.list"),
-                    description = locale("crafting.menu.listDescription"),
-                    icon = "list",
+                    title = locale("waypoint.menu.settings"),
+                    description = locale("waypoint.menu.settingsDescription"),
+                    icon = "location-dot",
                     iconAnimation = "fade",
                     arrow = true,
                     onSelect = function()
-                        ExecuteCommand("craft:edit")
+                        ExecuteCommand("waypointsettings")
                     end
                 }
             }

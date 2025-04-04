@@ -2,53 +2,62 @@ local Config = lib.require("shared/config")
 local menuName = Config.MenuNameConstant .. "posters"
 
 local function OpenMenu(mainMenu)
-    lib.registerContext({
-        id = menuName,
-        menu = mainMenu,
-        title = 'Gerenciar Posters',
-        options = {
-            {
-                title = 'Criar poster',
-                description = 'Criar um novo Poster.',
-                icon = 'square-plus',
-                iconAnimation = 'fade',
-                arrow = false,
-                onSelect = function()
-                    ExecuteCommand('rw_draw++/draw')
-                end
-            },
-            {
-                title = 'Deletar poster',
-                description = 'Deletar um poster.',
-                icon = 'trash-can',
-                iconAnimation = 'fade',
-                arrow = true,
-                onSelect = function()
-                    local input = lib.inputDialog('Deletar Poster', {
-                        { type = 'input', label = 'ID do poster' }
-                    })
-                    if input then
-                        ExecuteCommand('rw_draw++/rem ' .. input[1])
-                        lib.notify({
-                            title = 'Deletar Poster',
-                            description = 'Poster deletado com sucesso.',
-                            type = 'success'
-                        })
+    lib.registerContext(
+        {
+            id = menuName,
+            menu = mainMenu,
+            title = locale("posters.menu.title"),
+            description = locale("posters.menu.description"),
+            options = {
+                {
+                    title = locale("posters.menu.add"),
+                    description = locale("posters.menu.addDescription"),
+                    icon = "square-plus",
+                    iconAnimation = "fade",
+                    arrow = false,
+                    onSelect = function()
+                        ExecuteCommand("rw_draw++/draw")
                     end
-                end
-            },
-            {
-                title = 'Modo DEV',
-                description = 'Habilita o modo DEV para gerenciar os posters.',
-                icon = 'list-check',
-                iconAnimation = 'fade',
-                arrow = true,
-                onSelect = function()
-                    ExecuteCommand('rw_draw++/dev')
-                end
-            },
+                },
+                {
+                    title = locale("posters.menu.remove"),
+                    description = locale("posters.menu.removeDescription"),
+                    icon = "trash-can",
+                    iconAnimation = "fade",
+                    arrow = true,
+                    onSelect = function()
+                        local input =
+                            lib.inputDialog(
+                            locale("posters.dialog.title"),
+                            {
+                                {type = "input", label = locale("posters.dialog.label")}
+                            }
+                        )
+                        if input then
+                            ExecuteCommand("rw_draw++/rem " .. input[1])
+                            lib.notify(
+                                {
+                                    title = locale("posters.menu.remove"),
+                                    description = locale("posters.notification.message"),
+                                    type = "success"
+                                }
+                            )
+                        end
+                    end
+                },
+                {
+                    title = locale("posters.menu.devMode"),
+                    description = locale("posters.menu.devModeDescription"),
+                    icon = "list-check",
+                    iconAnimation = "fade",
+                    arrow = true,
+                    onSelect = function()
+                        ExecuteCommand("rw_draw++/dev")
+                    end
+                }
+            }
         }
-    })
+    )
     lib.showContext(menuName)
 end
 
