@@ -114,8 +114,9 @@ local function loadFixedMenuItems(playerData)
                 icon = "location-dot",
                 iconAnimation = Config.IconAnimation,
                 description = locale("player.menu.waypointsDescription"),
-                onSelectFunction = ExecuteCommand,
-                onSelectArg = "waypoints"
+                onSelectFunction = function()
+                    TriggerEvent('pickle_waypoints:client:openWaypointMenu')
+                end
             }
         )
     end
