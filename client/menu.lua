@@ -1,6 +1,6 @@
 local Utils = lib.require("client/utils")
-local PlayerMenu = lib.require("client/player")
-local AdminMenu = lib.require("client/admin")
+local PlayerMenu = lib.require("client/modules/player")
+local AdminMenu = lib.require("client/modules/admin")
 
 local menus = {}
 local categories = {}

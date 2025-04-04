@@ -1,7 +1,12 @@
 local Config = lib.require("shared/config")
 local Utils = lib.require("client/utils")
+local Time = lib.require("client/modules/time")
+local Spotlight = lib.require("client/modules/spotlight")
+local Crafting = lib.require("client/modules/crafting")
+local Jobs = lib.require("client/modules/jobs")
+local Posters = lib.require("client/modules/posters")
 
-local function loadFixedMenuItems()
+local function loadFixedMenuItems(mainMenu)
     local options = {}
 
     options[#options + 1] =
@@ -37,8 +42,9 @@ local function loadFixedMenuItems()
             icon = "clock",
             iconAnimation = Config.IconAnimation,
             description = locale("admin.menu.clockDescription"),
-            onSelectFunction = ExecuteCommand, -- AbrirMenuTime()
-            onSelectArg = "clock"
+            onSelectFunction = function()
+                Time.openMenu(mainMenu)
+            end
         }
     )
 
@@ -61,6 +67,7 @@ end
 
 local function loadManageMenuFixedItems(options, categories)
     categories["manage"] = {
+        name = "manage",
         displayName = locale("admin.menu.manageCategory"),
         description = locale("admin.menu.manageCategoryDescription"),
         icon = "fa-solid fa-cogs",
@@ -166,8 +173,9 @@ local function loadManageMenuFixedItems(options, categories)
                 icon = "panorama",
                 iconAnimation = "fade",
                 description = "Crie ou gerencie os outdoors ou imagens criados do servidor, você pode adicionar ou remover.",
-                onSelectFunction = ExecuteCommand,
-                onSelectArg = "outdoors",
+                onSelectFunction = function()
+                    Posters.openMenu(Config.MenuNameConstant .. "manage")
+                end,
                 category = "manage"
             }
         )
@@ -196,8 +204,9 @@ local function loadManageMenuFixedItems(options, categories)
                 icon = "tools",
                 iconAnimation = "fade",
                 description = "Crie ou gerencie mesas de fabricação do servidor, você pode usar props para a mesa.",
-                onSelectFunction = ExecuteCommand,
-                onSelectArg = "crafting",
+                onSelectFunction = function()
+                    Crafting.openMenu(Config.MenuNameConstant .. "manage")
+                end,
                 category = "manage"
             }
         )
@@ -211,8 +220,9 @@ local function loadManageMenuFixedItems(options, categories)
                 icon = "briefcase",
                 iconAnimation = "fade",
                 description = "Crie ou gerencie grupos, trabalhos e facções (Jobs e Gangs) in game.",
-                onSelectFunction = ExecuteCommand,
-                onSelectArg = "groups",
+                onSelectFunction = function()
+                    Jobs.openMenu(Config.MenuNameConstant .. "manage")
+                end,
                 category = "manage"
             }
         )
@@ -226,8 +236,9 @@ local function loadManageMenuFixedItems(options, categories)
                 icon = "lightbulb",
                 iconAnimation = "fade",
                 description = "Crie ou gerencie luzes in game",
-                onSelectFunction = ExecuteCommand,
-                onSelectArg = "spotlight",
+                onSelectFunction = function()
+                    Spotlight.openMenu(Config.MenuNameConstant .. "manage")
+                end,
                 category = "manage",
             }
         )
@@ -239,12 +250,13 @@ local function loadManageMenuFixedItems(options, categories)
 end
 
 local function registerMenu(menu, categories)
-    local options = loadFixedMenuItems()
+    local menuName = Config.MenuNameConstant .. "admin"
+    local options = loadFixedMenuItems(menuName)
     local cats, finalMenu = loadManageMenuFixedItems(menu, categories)
     options = Utils.loadRuntimeMenuItems(options, finalMenu, cats)
     lib.registerContext(
         {
-            id = Config.MenuNameConstant .. "admin",
+            id = menuName,
             title = locale("admin.menu.title", Config.ImgUrl),
             description = locale("admin.menu.description"),
             options = options

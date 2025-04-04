@@ -14,14 +14,14 @@ local function OpenSubMenu(categoryName, categoryData, menu)
     end
     lib.registerContext(
         {
-            id = Config.MenuNameConstant .. categoryData.displayName,
+            id = Config.MenuNameConstant .. categoryData.name,
             title = categoryData.displayName,
             description = categoryData.description,
             menu = Config.MenuNameConstant .. categoryData.parentMenu,
             options = options
         }
     )
-    lib.showContext(Config.MenuNameConstant .. categoryData.displayName)
+    lib.showContext(Config.MenuNameConstant .. categoryData.name)
 end
 
 local function getCategory(categories, name)
