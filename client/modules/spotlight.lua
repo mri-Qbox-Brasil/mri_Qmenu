@@ -1,4 +1,4 @@
-ColorScheme = GlobalState.UIColors or {}
+ColorScheme = GlobalState.UIColors
 local Config = lib.require("shared/config")
 local menuName = Config.MenuNameConstant .. "spotlight"
 

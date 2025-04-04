@@ -1,3 +1,4 @@
+local ColorScheme = GlobalState.UIColors
 local Config = lib.require("shared/config")
 local menuName = Config.MenuNameConstant .. "crafting"
 
@@ -12,8 +13,9 @@ local function OpenMenu(mainMenu)
                 {
                     title = locale("waypoint.menu.clear"),
                     description = locale("waypoint.menu.clearDescription"),
-                    icon = "trash",
+                    icon = "trash-can",
                     iconAnimation = Config.IconAnimation,
+                    iconColor = ColorScheme.danger,
                     onSelect = function()
                         ExecuteCommand("clearwaypoints")
                     end

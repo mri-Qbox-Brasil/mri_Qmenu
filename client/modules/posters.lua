@@ -1,3 +1,4 @@
+ColorScheme = GlobalState.UIColors
 local Config = lib.require("shared/config")
 local menuName = Config.MenuNameConstant .. "posters"
 
@@ -24,6 +25,7 @@ local function OpenMenu(mainMenu)
                     description = locale("posters.menu.removeDescription"),
                     icon = "trash-can",
                     iconAnimation = Config.IconAnimation,
+                    iconColor = ColorScheme.danger,
                     arrow = true,
                     onSelect = function()
                         local input =
