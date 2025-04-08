@@ -51,7 +51,7 @@ local function loadFixedMenuItems(playerData)
                 iconAnimation = Config.IconAnimation,
                 description = locale("player.menu.manageJobDescription"),
                 onSelectFunction = ExecuteCommand,
-                onSelecArg = "+tablet:job"
+                onSelectArg = "+tablet:job"
             }
         )
     end
