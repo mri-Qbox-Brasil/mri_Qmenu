@@ -161,3 +161,6 @@ Menus dinâmicos também podem ser adicionados/removidos dinamicamente(em execu�
     ```lua
     exports["mri_Qmenu"]:RemoveCategory("GFX")
     ```
+## 💾 Download
+
+[Download](https://github.com/mri-Q/mri_Qmenu)
