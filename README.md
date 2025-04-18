@@ -163,4 +163,4 @@ Menus dinâmicos também podem ser adicionados/removidos dinamicamente(em execu�
     ```
 ## 💾 Download
 
-[Download](https://github.com/mri-Q/mri_Qmenu)
+[Download](https://github.com/mri-Qbox-Brasil/mri_Qmenu)
