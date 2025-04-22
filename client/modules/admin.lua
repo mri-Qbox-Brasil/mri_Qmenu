@@ -65,7 +65,8 @@ local function loadFixedMenuItems(mainMenu)
     return options
 end
 
-local function loadManageMenuFixedItems(options, categories)
+local function loadManageMenuFixedItems(menu, categories)
+    local options = Utils.deepCopy(menu)
     categories["manage"] = {
         name = "manage",
         displayName = locale("admin.menu.manageCategory"),
