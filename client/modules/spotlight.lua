@@ -1,4 +1,4 @@
-ColorScheme = GlobalState.UIColors
+ColorScheme = GlobalState.UIColors or {}
 local Config = lib.require("shared/config")
 local menuName = Config.MenuNameConstant .. "spotlight"
 
@@ -24,7 +24,7 @@ local function OpenMenu(mainMenu)
                     title = locale("spotlight.menu.remove"),
                     description = locale("spotlight.menu.removeDescription"),
                     icon = "trash-can",
-                    iconColor = ColorScheme.danger,
+                    iconColor = ColorScheme.danger or "#FF0000",
                     iconAnimation = Config.IconAnimation,
                     arrow = true,
                     onSelect = function()

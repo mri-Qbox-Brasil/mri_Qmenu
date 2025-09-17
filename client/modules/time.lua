@@ -65,7 +65,7 @@ local function OpenMenu(mainMenu)
                         freezeTime and locale("misc.yes") or locale("misc.no")
                     ),
                     icon = freezeTime and "snowflake" or "snowflake-slash",
-                    iconColor = freezeTime and ColorScheme.info or ColorScheme.success,
+                    iconColor = freezeTime and (ColorScheme.info or "#0088FF") or (ColorScheme.success or "#00FF00"),
                     iconAnimation = Config.IconAnimation,
                     onSelect = function()
                         if freezetime == 0 then
