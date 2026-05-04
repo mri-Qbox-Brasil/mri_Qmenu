@@ -39,6 +39,8 @@
     "admin.menu.groupsDescription": "Create or manage groups, jobs, and factions (Jobs and Gangs) in-game.",
     "admin.menu.spotlights": "Spotlights",
     "admin.menu.spotlightsDescription": "Create or manage spotlights in-game.",
+    "admin.menu.vinewood": "Vinewood",
+    "admin.menu.vinewoodDescription": "Edit your vinewood billboard in-game!",
 
     "crafting.menu.title": "Manage Crafting",
     "crafting.menu.description": "Manage server crafting.",

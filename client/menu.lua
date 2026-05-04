@@ -25,6 +25,11 @@ local function setMenu(menuName, data)
     menus[menuName] = data
 end
 
+-- Callback para permitir que outros resources abram o menu admin
+lib.callback.register('AbrirMenuAdmin', function()
+    Menu.openAdminMenu()
+end)
+
 return {
     addItemToMenu = function(menuName, item)
         local menu = getMenu(menuName)

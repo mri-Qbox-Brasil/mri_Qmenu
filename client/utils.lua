@@ -5,6 +5,14 @@ local defaultCategory = {
     iconAnimation = Config.IconAnimation
 }
 
+local ColorScheme = {
+    success = '#51CF66',
+    info = '#668CFF',
+    warning = '#FFD700',
+    danger = '#FF6347'
+}
+GlobalState:set('UIColors', ColorScheme, true)
+
 local function debug(msg)
     if Config.Debug then
         print(string.format("[Qmenu] %s", msg))
@@ -74,18 +82,17 @@ local function getPlayerOrgs(playerData)
 end
 
 local function isBoss(playerData, org)
-    if not GetResourceState("mri_Qjobsystem") == "started" then
+    if GetResourceState("mri_Qjobsystem") ~= "started" then
         return false
     end
     return exports.mri_Qjobsystem:CheckPlayerIsbossByJobSystemData(org, playerData)
 end
 
 local function isRecruiter(playerData, org)
-    if not GetResourceState("mri_Qjobsystem") == "started" then
+    if GetResourceState("mri_Qjobsystem") ~= "started" then
         return false
     end
     return exports.mri_Qjobsystem:CheckPlayerIrecruiterByJobSystemData(org, playerData)
-    -- return = exports.mri_Qjobsystem:CheckPlayerIsRecruiterByJobSystemData(org, playerData)
 end
 
 local function createMenuItem(item)

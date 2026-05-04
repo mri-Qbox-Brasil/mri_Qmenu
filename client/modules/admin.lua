@@ -245,6 +245,21 @@ local function loadManageMenuFixedItems(menu, categories)
         )
     end
 
+    if (GetResourceState("mri_Qvinewood") == "started") then
+        options[#options + 1] =
+            Utils.createMenuItem(
+            {
+                title = locale("admin.menu.vinewood"),
+                icon = "fa-solid fa-film",
+                iconAnimation = Config.IconAnimation,
+                description = locale("admin.menu.vinewoodDescription"),
+                onSelectFunction = ExecuteCommand,
+                onSelectArg = "vinewood",
+                category = "manage"
+            }
+        )
+    end
+
     -- Adicione mais menus fixos aqui :)
 
     return categories, options

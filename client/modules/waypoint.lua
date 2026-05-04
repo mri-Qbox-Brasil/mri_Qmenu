@@ -1,6 +1,6 @@
 local ColorScheme = GlobalState.UIColors or {}
 local Config = lib.require("shared/config")
-local menuName = Config.MenuNameConstant .. "crafting"
+local menuName = Config.MenuNameConstant .. "waypoint"
 
 local function OpenMenu(mainMenu)
     lib.registerContext(

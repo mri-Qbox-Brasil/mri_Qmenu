@@ -39,6 +39,8 @@
     "admin.menu.groupsDescription": "Crie ou gerencie grupos, trabalhos e facções (Jobs e Gangs) in game.",
     "admin.menu.spotlights": "Spotlights",
     "admin.menu.spotlightsDescription": "Crie ou gerencie luzes in game.",
+    "admin.menu.vinewood": "Vinewood",
+    "admin.menu.vinewoodDescription": "Edite a sua placa de vinewood in game!",
 
     "crafting.menu.title": "Gerenciar Craftings",
     "crafting.menu.description": "Gerenciar os craftings do servidor.",
